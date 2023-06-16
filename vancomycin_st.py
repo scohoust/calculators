@@ -8,7 +8,7 @@ if 'method' not in st.session_state:
   st.button('Maintainence', key="method")
   
   
- st.write(st.session_state.method)
+st.write(st.session_state.method)
             
             
       
