@@ -9,7 +9,7 @@ st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
 
 st.selectbox('Administer by', ('Central', 'Peripheral'), key="route")
 
-if st.session_state.method = "Loading":
+if st.session_state.method == "Loading":
   crea = st.number_input('Serum creatinine')
             
       
