@@ -1,14 +1,10 @@
 import streamlit as st
 
 st.title('Vancomycin calculator')
+ 
+st.button('Loading', key="method")
+st.button('Maintainence', key="method")
 
-if 'method' not in st.session_state:
-  st.session_state['method'] = 'nil'
-  st.button('Loading', key="method")
-  st.button('Maintainence', key="method")
-  
-  
-st.write(st.session_state.method)
             
             
       
