@@ -2,6 +2,14 @@ import streamlit as st
 
 st.title('Vancomycin calculator')
 
+css = r'''
+    <style>
+        [data-testid="stForm"] {border: 0px; padding: inherit;}
+    </style>
+'''
+
+st.markdown(css, unsafe_allow_html=True)
+
 if 'method' not in st.session_state:
   st.session_state['method'] = 'nil'
 
