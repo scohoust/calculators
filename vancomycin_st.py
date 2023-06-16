@@ -9,9 +9,9 @@ css = r'''
 '''
 
 st.markdown(css, unsafe_allow_html=True)
-
+    
 if 'method' not in st.session_state:
-  st.session_state['method'] = 'nil'
+  st.session_state.method = "empty"
 
 st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
 st.selectbox('Administer by', ('Central', 'Peripheral'), key="route")
