@@ -34,13 +34,20 @@ if not submitted:
 
 st.write('Successfully submitted!')
 
+st.divider()
+
 route = st.session_state.route
+if route == 'Central':
+    route_load_dilution = 'diluted in **100 ml** of 0.9% NaCl or 5% glucose'
+if route == 'Peripheral':
+    route_load_dilution = 'diluted in **250 ml** of 0.9% NaCl or 5% glucose'
 
 if st.session_state.method == 'Loading':
     st.write('## Vancomycin :blue[Loading] dose -', route)
-    st.divider();
+    st.divider()
     if renal == True or crea >100:
-        st.write('**750 mg**')
+        st.write('**750 mg**', route_load_dilution)
+        
         st.write('Administered over 2 hours')
     
              
