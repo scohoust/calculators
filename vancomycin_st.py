@@ -55,7 +55,7 @@ if st.session_state.method == 'Loading':
     else:
         if weight >= 70:
             st.write('### *1.25 g*', route_load_dilution)
-        if weight >= 50 AND weight < 70:
+        if weight >= 50 and weight < 70:
             st.write('### *1 g*', route_load_dilution)
         if weight < 50:
             st.write('### *750 mg*', route_load_dilution)
