@@ -53,9 +53,13 @@ if st.session_state.method == 'Loading':
     if renal == True or crea >100:
         st.write('### *750 mg*', route_load_dilution)
     else:
-        if weight > 70:
-            st.write('### *1250 mg*', route_load_dilution)
+        if weight >= 70:
+            st.write('### *1.25 g*', route_load_dilution)
+        if weight >= 50 AND weight < 70:
+            st.write('### *1 g*', route_load_dilution)
+        if weight < 50:
+            st.write('### *750 mg*', route_load_dilution)
         
-    st.write('Administered over 2 hours')
+    st.write('Administered over **2** hours')
     
              
