@@ -34,7 +34,7 @@ if not submitted:
 
 st.write('Successfully submitted!')
 
-if st.session_state.methd == 'Loading':
+if st.session_state.method == 'Loading':
     st.title('Vancomycin :blue[Loading] dose - '. st.session_state['route'])
     st.divider();
     if renal == True or crea >100:
