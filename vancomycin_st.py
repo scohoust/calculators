@@ -34,8 +34,10 @@ if not submitted:
 
 st.write('Successfully submitted!')
 
+route = st.session_state.route
+
 if st.session_state.method == 'Loading':
-    st.title('Vancomycin :blue[Loading] dose - ') . st.write(st.session_state['route'])
+    st.title('Vancomycin :blue[Loading] dose -', route)
     st.divider();
     if renal == True or crea >100:
         st.write('**750 mg**')
