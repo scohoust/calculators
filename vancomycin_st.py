@@ -33,3 +33,12 @@ if not submitted:
   st.stop();
 
 st.write('Successfully submitted!')
+
+if st.session_state.methd == 'Loading':
+    st.title('Vancomycin :blue[Loading] dose - '. st.session_state['route'])
+    st.divider();
+    if renal == True or crea >100:
+        st.write('**750 mg**')
+        st.write('Administered over 2 hours')
+    
+             
