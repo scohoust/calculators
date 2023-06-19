@@ -49,7 +49,7 @@ if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
 
 if st.session_state.method == 'Loading':
-    st.markdown('<div class="result">)
+    st.markdown('<div class="result">')
     st.write('## Vancomycin :blue[Loading] dose -', route)
     st.divider()
     if renal == True or crea >100:
