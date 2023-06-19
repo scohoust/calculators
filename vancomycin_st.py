@@ -43,18 +43,18 @@ st.divider()
 
 route = st.session_state.route
 if route == 'Central':
-    route_load_dilution = 'diluted in **100 ml** of 0.9% NaCl or 5% glucose'
+    route_load_dilution = 'diluted in *100 ml* of 0.9% NaCl or 5% glucose'
 if route == 'Peripheral':
-    route_load_dilution = 'diluted in **250 ml** of 0.9% NaCl or 5% glucose'
+    route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
 
 if st.session_state.method == 'Loading':
     st.write('## Vancomycin :blue[Loading] dose -', route)
     st.divider()
     if renal == True or crea >100:
-        st.write('### **750 mg**', route_load_dilution)
+        st.write('### *750 mg*', route_load_dilution)
     else:
         if weight > 70:
-            st.write('### **1250 mg**', route_load_dilution)
+            st.write('### *1250 mg*', route_load_dilution)
         
     st.write('Administered over 2 hours')
     
