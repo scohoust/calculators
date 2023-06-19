@@ -17,6 +17,9 @@ form = st.form(key="calc")
 crea = form.number_input('Serum creatinine')
 renal = form.checkbox('On haemodialysis')
 
+if st.session_state.method == 'Loading':
+  weight = form.number_input('Acutal body weight')
+
 if st.session_state.method == 'Maintainence':
   level = form.number_input('Vanc level')
   
@@ -32,6 +35,8 @@ submitted = form.form_submit_button('Submit')
 if not submitted:
   st.stop();
 
+
+
 st.write('Successfully submitted!')
 
 st.divider()
@@ -46,7 +51,10 @@ if st.session_state.method == 'Loading':
     st.write('## Vancomycin :blue[Loading] dose -', route)
     st.divider()
     if renal == True or crea >100:
-        st.write('**750 mg**', route_load_dilution)
+        st.write('### **750 mg**', route_load_dilution)
+    else:
+        if  
+        st.write('### **750 mg**', route_load_dilution)
         
         st.write('Administered over 2 hours')
     
