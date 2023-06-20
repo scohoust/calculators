@@ -51,31 +51,34 @@ st.divider()
 route = st.session_state.route
 if route == 'Central':
     route_load_dilution = 'diluted in *100 ml* of 0.9% NaCl or 5% glucose'
-    route_startrate = 'administered at x ml/hr using a *500mg/50ml* concentration' 
+    route_renal_start = 'administered at __4.2 ml/hr__ using a *500mg/50ml* concentration' 
+    route_start_normal = 'administered at __6.3 ml/hr__ using a *500mg/50ml* concentration' 
 if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
-    route_startrate = 'administered at x ml/hr using a *500mg/50ml* concentration' 
+    route_renal_start = 'administered at __8.3 ml/hr__ using a *250mg/50ml* concentration' 
+    route_start_normal = 'administered at __12.5 ml/hr__ using a *250mg/50ml* concentration' 
+
 
 if st.session_state.method == 'Loading':
     with st.container():
         st.write('## Vancomycin :blue[Loading] dose -', route)
         st.divider()
         if renal == True or crea >100:
-            st.write('### *750 mg*', route_load_dilution)
+            st.write('#### *750 mg*', route_load_dilution)
         else:
             if weight >= 70:
-                st.write('### *1.25 g*', route_load_dilution)
+                st.write('#### *1.25 g*', route_load_dilution)
             if weight >= 50 and weight < 70:
-                st.write('### *1 g*', route_load_dilution)
+                st.write('#### *1 g*', route_load_dilution)
             if weight < 50:
-                st.write('### *750 mg*', route_load_dilution)
+                st.write('#### *750 mg*', route_load_dilution)
         
         st.write('Administered over **2** hours')
 
         st.write('### Immediate followed by an continuous infusion:')
         if renal == True or crea >100:
-            st.write('### *1 g* over 24 hours', route_startrate)
+            st.write('#### *1 g* over 24 hours', route_renal_start)
         else:
-            st.write('### *1.5 g* over 24 hours', route_startrate)
+            st.write('#### *1.5 g* over 24 hours', route_start_normal)
     
              
