@@ -15,11 +15,11 @@ st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
 st.selectbox('Administer by', ('Central', 'Peripheral'), key="route")
 
 form = st.form(key="calc")
-crea = form.number_input('Serum creatinine', value="50")
+crea = form.number_input('Serum creatinine', value=50)
 renal = form.checkbox('On haemodialysis')
 
 if st.session_state.method == 'Loading':
-  weight = form.number_input('Acutal body weight', value="70")
+  weight = form.number_input('Acutal body weight', value=70)
 
 if st.session_state.method == 'Maintainence':
   level = form.number_input('Vanc level')
