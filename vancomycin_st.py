@@ -51,12 +51,12 @@ st.divider()
 route = st.session_state.route
 if route == 'Central':
     route_load_dilution = 'diluted in *100 ml* of 0.9% NaCl or 5% glucose'
-    route_renal_start = 'administered at __4.2 ml/hr__ using a *500mg/50ml* concentration' 
-    route_start_normal = 'administered at __6.3 ml/hr__ using a *500mg/50ml* concentration' 
+    route_renal_start = 'administered at _4.2 ml/hr_ using a *500mg/50ml* concentration' 
+    route_start_normal = 'administered at _6.3 ml/hr_ using a *500mg/50ml* concentration' 
 if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
-    route_renal_start = 'administered at __8.3 ml/hr__ using a *250mg/50ml* concentration' 
-    route_start_normal = 'administered at __12.5 ml/hr__ using a *250mg/50ml* concentration' 
+    route_renal_start = 'administered at _8.3 ml/hr_ using a *250mg/50ml* concentration' 
+    route_start_normal = 'administered at _12.5 ml/hr_ using a *250mg/50ml* concentration' 
 
 
 if st.session_state.method == 'Loading':
