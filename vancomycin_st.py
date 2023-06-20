@@ -6,7 +6,7 @@ css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
         [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
-        background-color: #fcb900;
+        background-color: #fcb900; padding: 5px;
         }
     </style>
 '''
