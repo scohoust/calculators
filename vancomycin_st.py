@@ -5,7 +5,9 @@ st.title('Vancomycin calculator')
 css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
-        .result { background-colour: #fcb900; }
+        div[data-testid="stVerticalBlock"] div[style*="flex-direction: column;"] div[data-testid="stVerticalBlock"] {
+        background-colour: #fcb900;
+        }
     </style>
 '''
 
