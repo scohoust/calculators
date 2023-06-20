@@ -6,7 +6,7 @@ css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
         [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
-        border: 20px groove red;
+        background-color: #fcb900;
         }
     </style>
 '''
@@ -45,9 +45,6 @@ submitted = form.form_submit_button('Submit')
 if not submitted:
   st.stop();
 
-
-
-st.write('Successfully submitted!')
 
 st.divider()
 
