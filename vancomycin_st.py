@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title('Vancomycin calculator')
+st.title('Continuous Vancomycin calculator')
 
 css = r'''
     <style>
@@ -51,8 +51,10 @@ st.divider()
 route = st.session_state.route
 if route == 'Central':
     route_load_dilution = 'diluted in *100 ml* of 0.9% NaCl or 5% glucose'
+    route_startrate = 'administered at x ml/hr using a *500mg/50ml* concentration' 
 if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
+    route_startrate = 'administered at x ml/hr using a *500mg/50ml* concentration' 
 
 if st.session_state.method == 'Loading':
     with st.container():
@@ -70,5 +72,10 @@ if st.session_state.method == 'Loading':
         
         st.write('Administered over **2** hours')
 
+        st.write('### Immediate followed by an continuous infusion:')
+        if renal == True or crea >100:
+            st.write('### *1 g* over 24 hours', route_startrate)
+        else:
+            st.write('### *1.5 g* over 24 hours', route_startrate)
     
              
