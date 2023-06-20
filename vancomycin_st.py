@@ -15,11 +15,11 @@ st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
 st.selectbox('Administer by', ('Central', 'Peripheral'), key="route")
 
 form = st.form(key="calc")
-crea = form.number_input('Serum creatinine')
+crea = form.number_input('Serum creatinine', value="50")
 renal = form.checkbox('On haemodialysis')
 
 if st.session_state.method == 'Loading':
-  weight = form.number_input('Acutal body weight')
+  weight = form.number_input('Acutal body weight', value="70")
 
 if st.session_state.method == 'Maintainence':
   level = form.number_input('Vanc level')
@@ -49,20 +49,20 @@ if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
 
 if st.session_state.method == 'Loading':
-    st.markdown('<div class="result">', unsafe_allow_html=True)
-    st.write('## Vancomycin :blue[Loading] dose -', route)
-    st.divider()
+    loading = st.container()
+    loading.write('## Vancomycin :blue[Loading] dose -', route)
+    loading.divider()
     if renal == True or crea >100:
-        st.write('### *750 mg*', route_load_dilution)
+        loading.write('### *750 mg*', route_load_dilution)
     else:
         if weight >= 70:
-            st.write('### *1.25 g*', route_load_dilution)
+            loading.write('### *1.25 g*', route_load_dilution)
         if weight >= 50 and weight < 70:
-            st.write('### *1 g*', route_load_dilution)
+            loading.write('### *1 g*', route_load_dilution)
         if weight < 50:
-            st.write('### *750 mg*', route_load_dilution)
+            loading.write('### *750 mg*', route_load_dilution)
         
-    st.write('Administered over **2** hours')
+    loading.write('Administered over **2** hours')
 
-    st.markdown('</div', unsafe_allow_html=True)
+    
              
