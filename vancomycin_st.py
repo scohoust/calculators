@@ -49,20 +49,20 @@ if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
 
 if st.session_state.method == 'Loading':
-    loading = st.container()
-    loading.write('## Vancomycin :blue[Loading] dose -', route)
-    loading.divider()
-    if renal == True or crea >100:
-        loading.write('### *750 mg*', route_load_dilution)
-    else:
-        if weight >= 70:
-            loading.write('### *1.25 g*', route_load_dilution)
-        if weight >= 50 and weight < 70:
-            loading.write('### *1 g*', route_load_dilution)
-        if weight < 50:
-            loading.write('### *750 mg*', route_load_dilution)
+    with st.container():
+        st.write('## Vancomycin :blue[Loading] dose -', route)
+        st.divider()
+        if renal == True or crea >100:
+            st.write('### *750 mg*', route_load_dilution)
+        else:
+            if weight >= 70:
+                st.write('### *1.25 g*', route_load_dilution)
+            if weight >= 50 and weight < 70:
+                st.write('### *1 g*', route_load_dilution)
+            if weight < 50:
+                st.write('### *750 mg*', route_load_dilution)
         
-    loading.write('Administered over **2** hours')
+        st.write('Administered over **2** hours')
 
     
              
