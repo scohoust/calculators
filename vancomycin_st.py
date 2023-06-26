@@ -101,28 +101,28 @@ if st.session_state.method == 'Loading':
 if st.session_state.method == 'Maintainence':
     with st.container():
         st.write('### Vancomycin :blue[Maintainence] infusion -', route)
+        st.write('Target daily level is **20 mg/L**')
+        st.write('Do not use if vancomycin started *in last 6 hours*)
         st.divider()
         current = rates.index[rates[route]==infusion].tolist()
-        st.write(current)
+
         if level >= 15 and level <= 25:
             st.write('#### No change - continue current rate')
 
         if level < 15 and level > 10:
-            st.write('#### Increase daily dose')
-
-            if current[0] == 6:
+             if current[0] == 6:
                 st.write('#### Already on maximum rate - discuss with pharmacist')
             else:            
                 new = current[0] + 1
+                st.write('#### Increase daily dose')
                 st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
 
         if level > 25 and level < 30:
-            st.write('#### Decrease daily dose')
-
             if current[0] == 0:
                 st.write('#### Already on minimum rate - discuss with pharmacist')
             else:    
                 new = current[0] - 1
+                st.write('#### Decrease daily dose')
                 st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
 
         
