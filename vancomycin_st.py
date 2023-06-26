@@ -102,7 +102,7 @@ if st.session_state.method == 'Maintainence':
     with st.container():
         st.write('### Vancomycin :blue[Maintainence] infusion -', route)
         st.write('Target daily level is **20 mg/L**')
-        st.write('Do not use if vancomycin started *in last 6 hours*)
+        st.write('Do not use if vancomycin started *in last 6 hours*')
         st.divider()
         current = rates.index[rates[route]==infusion].tolist()
 
