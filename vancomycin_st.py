@@ -103,7 +103,7 @@ if st.session_state.method == 'Maintainence':
         st.write('### Vancomycin :blue[Maintainence] infusion -', route)
         st.divider()
         current = rates.index[rates[route]==infusion].tolist()
-
+        st.write(current)
         if level >= 15 and level <= 25:
             st.write('#### No change - continue current rate')
 
