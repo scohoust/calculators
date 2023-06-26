@@ -61,7 +61,7 @@ if st.session_state.method == 'Loading':
 
 if st.session_state.method == 'Maintainence':
     if level < 10 or level > 35:
-        st.error('Check the vanc level - it is out of a normal range')
+        st.error('Check the vancomycin level - it is out of a normal range')
 
 
 st.divider()
@@ -105,7 +105,13 @@ if st.session_state.method == 'Maintainence':
 
         if level >= 15 and level <= 25:
             st.write('#### No change - continue current rate')
-                
+
+        if level < 15 and level > 10:
+            st.write('#### Increase daily dose by 500 mg')
+            rates.index[rates['Central']==infusion].tolist()
+            
+            st.write(rates)
+        
         st.write('Ensure daily vancomycin level')
 
         
