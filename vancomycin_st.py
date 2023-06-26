@@ -6,7 +6,7 @@ css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
         [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
-        background-color: #fcb900; padding: 5px; border:1px; 
+        background-color: #fcb900; padding: 5px; border: 1px; border-color: #000; border-style: solid; 
         }
     </style>
 '''
@@ -48,10 +48,10 @@ if not submitted:
 #Error checking
 
 if crea < 20 or crea > 200:
-    st.warning('Check the creatinine - it is out of a normal range')
+    st.error('Check the creatinine - it is out of a normal range')
 
 if weight < 40 or weight > 110:
-    st.warning('Check the weight - it is out of a normal range')
+    st.error('Check the weight - it is out of a normal range')
 
 
 st.divider()
