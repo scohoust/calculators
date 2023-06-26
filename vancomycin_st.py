@@ -1,4 +1,12 @@
 import streamlit as st
+import pandas as pd
+
+data = {
+    'Central': ['1.1', '2.2', '4.2', '6.3', '8.3', '10.4', '12.5'],
+    'Peripheral': ['2.1', '4.2', '8.3', '12.5', '16.7', '20.8', '25.0']
+}
+
+rates = pd.DataFrame(data)
 
 st.title('Continuous Vancomycin calculator')
 
@@ -34,7 +42,7 @@ if st.session_state.method == 'Maintainence':
   
   if st.session_state.route == 'Central':
       infusion = form.select_slider('Current rate', 
-                              options=['1.1', '2.2', '4.2', '6.3', '8.3', '10.4', '12.5'])
+                              options=rates['Central'].unique())
   if st.session_state.route == 'Peripheral':
       infusion = form.select_slider('Current rate', 
                               options=['2.1', '4.2', '8.3', '12.5', '16.7', '20.8', '25.0'])            
@@ -52,7 +60,7 @@ if st.session_state.method == 'Loading':
         st.error('Check the weight - it is out of a normal range')
 
 if st.session_state.method == 'Maintainence':
-    if level < 10 or level > 25:
+    if level < 10 or level > 35:
         st.error('Check the vanc level - it is out of a normal range')
 
 
@@ -70,7 +78,7 @@ if route == 'Peripheral':
 
 if st.session_state.method == 'Loading':
     with st.container():
-        st.write('## Vancomycin :blue[Loading] dose -', route)
+        st.write('### Vancomycin :blue[Loading] dose -', route)
         st.divider()
         if renal == True or crea >100:
             st.write('#### *750 mg*', route_load_dilution)
@@ -92,11 +100,11 @@ if st.session_state.method == 'Loading':
     
 if st.session_state.method == 'Maintainence':
     with st.container():
-        st.write('## Vancomycin :blue[Maintainence] infusion -', route)
+        st.write('### Vancomycin :blue[Maintainence] infusion -', route)
         st.divider()
 
         if level >= 15 and level <= 25:
-            st.write('### No change - continue current rate')
+            st.write('#### No change - continue current rate')
                 
         st.write('Ensure daily vancomycin level')
 
