@@ -24,14 +24,13 @@ st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
 st.selectbox('Administer by', ('Central', 'Peripheral'), key="route")
 
 form = st.form(key="calc")
-crea = form.number_input('Serum creatinine', value=50)
-renal = form.checkbox('On haemodialysis')
-
 if st.session_state.method == 'Loading':
-  weight = form.number_input('Acutal body weight', value=70)
+    crea = form.number_input('Serum creatinine', value=50)
+    renal = form.checkbox('On haemodialysis')
+    weight = form.number_input('Acutal body weight', value=70)
 
 if st.session_state.method == 'Maintainence':
-  level = form.number_input('Vanc level')
+  level = form.number_input('Vanc level', value=15)
   
   if st.session_state.route == 'Central':
       infusion = form.select_slider('Current rate', 
@@ -46,10 +45,9 @@ if not submitted:
   st.stop();
 
 #Error checking
-if crea < 20 or crea > 200:
-    st.error('Check the creatinine - it is out of a normal range')
-
 if st.session_state.method == 'Loading':
+    if crea < 20 or crea > 200:
+        st.error('Check the creatinine - it is out of a normal range')
     if weight < 40 or weight > 110:
         st.error('Check the weight - it is out of a normal range')
 
@@ -96,8 +94,11 @@ if st.session_state.method == 'Maintainence':
     with st.container():
         st.write('## Vancomycin :blue[Maintainence] infusion -', route)
         st.divider()
+
+        if level >= 15 and level <= 25:
+            st.write('### No change - continue current rate')
                 
-        st.write('Continuous over **24** hours')
+        st.write('Ensure daily vancomycin level')
 
         
                 
