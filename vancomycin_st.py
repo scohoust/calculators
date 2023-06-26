@@ -13,6 +13,7 @@ st.title('Continuous Vancomycin calculator')
 css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
+        hr { margin: 0px; } 
         [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
         background-color: #fcb900; padding: 5px; border: 1px; border-color: #000; border-style: solid; 
         }
@@ -38,7 +39,7 @@ if st.session_state.method == 'Loading':
     weight = form.number_input('Acutal body weight', value=70)
 
 if st.session_state.method == 'Maintainence':
-  level = form.number_input('Vanc level', value=15)
+  level = form.number_input('Vanc level', value=15.0)
   
   if st.session_state.route == 'Central':
       infusion = form.select_slider('Current rate', 
@@ -102,14 +103,14 @@ if st.session_state.method == 'Maintainence':
     with st.container():
         st.write('### Vancomycin :blue[Maintainence] infusion -', route)
         st.write('Target daily level is **20 mg/L**')
-        st.write('Do not use if vancomycin started *in last 6 hours*')
+        st.write('Do not use if vancomycin started in last **6 hours**')
         st.divider()
         current = rates.index[rates[route]==infusion].tolist()
 
         if level >= 15 and level <= 25:
             st.write('#### No change - continue current rate')
 
-        if level < 15 and level > 10:
+        if level < 15 and level >= 10:
              if current[0] == 6:
                 st.write('#### Already on maximum rate - discuss with pharmacist')
              else:            
@@ -124,7 +125,14 @@ if st.session_state.method == 'Maintainence':
                 new = current[0] - 1
                 st.write('#### Decrease daily dose')
                 st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
-
+                
+        if level >= 30:
+                st.write('#### Stop infusion for at least **6 hours**')
+                st.write('#### Discuss new rate with pharmacist')
+            
+        if level < 10:
+                st.write('#### Ensure infusion not started in last **6 hours**')
+                st.write('#### Administer new loading dose')
         
         
         st.write('Ensure daily vancomycin level')
