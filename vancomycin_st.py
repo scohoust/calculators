@@ -110,7 +110,7 @@ if st.session_state.method == 'Maintainence':
         if level < 15 and level > 10:
             st.write('#### Increase daily dose')
 
-            if current == 6:
+            if current[0] == 6:
                 st.write('#### Already on maximum rate - discuss with pharmacist')
             else:            
                 new = current[0] + 1
@@ -119,7 +119,7 @@ if st.session_state.method == 'Maintainence':
         if level > 25 and level < 30:
             st.write('#### Decrease daily dose')
 
-            if current == 0:
+            if current[0] == 0:
                 st.write('#### Already on minimum rate - discuss with pharmacist')
             else:    
                 new = current[0] - 1
