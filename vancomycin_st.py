@@ -61,7 +61,7 @@ if st.session_state.method == 'Loading':
         st.error('Check the weight - it is out of a normal range')
 
 if st.session_state.method == 'Maintainence':
-    if level < 10 or level > 35:
+    if level < 7 or level > 35:
         st.error('Check the vancomycin level - it is out of a normal range')
 
 
@@ -70,12 +70,12 @@ st.divider()
 route = st.session_state.route
 if route == 'Central':
     route_load_dilution = 'diluted in *100 ml* of 0.9% NaCl or 5% glucose'
-    route_renal_start = 'administered at _4.2 ml/hr_ using a *500mg/50ml* concentration' 
-    route_start_normal = 'administered at _6.3 ml/hr_ using a *500mg/50ml* concentration' 
+    route_renal_start = 'administered at :red[_4.2 ml/hr_] using a *500mg/50ml* concentration' 
+    route_start_normal = 'administered at :red[_6.3 ml/hr_] using a *500mg/50ml* concentration' 
 if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
-    route_renal_start = 'administered at _8.3 ml/hr_ using a *250mg/50ml* concentration' 
-    route_start_normal = 'administered at _12.5 ml/hr_ using a *250mg/50ml* concentration' 
+    route_renal_start = 'administered at :red[_8.3 ml/hr_] using a *250mg/50ml* concentration' 
+    route_start_normal = 'administered at :red[_12.5 ml/hr_] using a *250mg/50ml* concentration' 
 
 if st.session_state.method == 'Loading':
     with st.container():
