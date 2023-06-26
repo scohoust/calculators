@@ -46,12 +46,16 @@ if not submitted:
   st.stop();
 
 #Error checking
-
 if crea < 20 or crea > 200:
     st.error('Check the creatinine - it is out of a normal range')
 
-if weight < 40 or weight > 110:
-    st.error('Check the weight - it is out of a normal range')
+if st.session_state.method == 'Loading':
+    if weight < 40 or weight > 110:
+        st.error('Check the weight - it is out of a normal range')
+
+if st.session_state.method == 'Maintainence':
+    if level < 10 or level > 25:
+        st.error('Check the vanc level - it is out of a normal range')
 
 
 st.divider()
@@ -65,7 +69,6 @@ if route == 'Peripheral':
     route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
     route_renal_start = 'administered at _8.3 ml/hr_ using a *250mg/50ml* concentration' 
     route_start_normal = 'administered at _12.5 ml/hr_ using a *250mg/50ml* concentration' 
-
 
 if st.session_state.method == 'Loading':
     with st.container():
@@ -89,4 +92,12 @@ if st.session_state.method == 'Loading':
         else:
             st.write('#### *1.5 g* over 24 hours', route_start_normal)
     
-             
+if st.session_state.method == 'Maintainence':
+    with st.container():
+        st.write('## Vancomycin :blue[Maintainence] infusion -', route)
+        st.divider()
+                
+        st.write('Continuous over **24** hours')
+
+        
+                
