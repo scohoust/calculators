@@ -108,16 +108,22 @@ if st.session_state.method == 'Maintainence':
             st.write('#### No change - continue current rate')
 
         if level < 15 and level > 10:
-            st.write('#### Increase daily dose by 500 mg')
-            
-            new = current[0] + 1
-            st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
+            st.write('#### Increase daily dose')
+
+            if current == 6:
+                st.write('#### Already on maximum rate - discuss with pharmacist')
+            else:            
+                new = current[0] + 1
+                st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
 
         if level > 25 and level < 30:
-            st.write('#### Increase daily dose by 500 mg')
-            
-            new = current[0] - 1
-            st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
+            st.write('#### Decrease daily dose')
+
+            if current == 0:
+                st.write('#### Already on minimum rate - discuss with pharmacist')
+            else:    
+                new = current[0] - 1
+                st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
 
         
         
