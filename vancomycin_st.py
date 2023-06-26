@@ -108,9 +108,9 @@ if st.session_state.method == 'Maintainence':
 
         if level < 15 and level > 10:
             st.write('#### Increase daily dose by 500 mg')
-            current = rates.index[rates['Central']==infusion].tolist()
+            current = rates.index[rates[route]==infusion].tolist()
+            
             st.write(current)
-            st.write(rates)
         
         st.write('Ensure daily vancomycin level')
 
