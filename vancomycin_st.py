@@ -116,7 +116,7 @@ if st.session_state.method == 'Maintainence':
              else:            
                 new = current[0] + 1
                 st.write('#### Increase daily dose')
-                st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
+                st.write('#### New rate: :red[', rates[route].iloc[new], 'ml/hr]')
 
         if level > 25 and level < 30:
             if current[0] == 0:
@@ -124,14 +124,14 @@ if st.session_state.method == 'Maintainence':
             else:    
                 new = current[0] - 1
                 st.write('#### Decrease daily dose')
-                st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
+                st.write('#### New rate: :red[', rates[route].iloc[new], 'ml/hr]')
                 
         if level >= 30:
                 st.write('#### Stop infusion for at least **6 hours**')
                 st.write('#### Discuss new rate with pharmacist')
             
         if level < 10:
-                st.write('#### Ensure infusion not started in last **6 hours**')
+                st.write('#### Ensure infusion has not started in the last **6 hours**')
                 st.write('#### Administer new loading dose')
         
         
