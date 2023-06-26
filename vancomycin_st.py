@@ -112,7 +112,7 @@ if st.session_state.method == 'Maintainence':
         if level < 15 and level > 10:
              if current[0] == 6:
                 st.write('#### Already on maximum rate - discuss with pharmacist')
-            else:            
+             else:            
                 new = current[0] + 1
                 st.write('#### Increase daily dose')
                 st.write('#### New rate: ', rates[route].iloc[new], 'ml/hr')
