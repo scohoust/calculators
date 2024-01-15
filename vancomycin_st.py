@@ -40,9 +40,8 @@ with st.sidebar:
 
 if st.session_state.method == 'Loading':
     form = st.form(key="calc")
-    row = st.columns([1, 2])
-    crea = row[0].number_input('Serum creatinine', placeholder="umol/L", min_value=5, value=None)
-    renal = row[1].checkbox('On continuous haemodialysis')
+    crea = form.number_input('Serum creatinine', placeholder="umol/L", min_value=5, value=None)
+    renal = form.checkbox('On continuous haemodialysis')
     weight = form.number_input('Acutal body weight', placeholder="kg", value=None)
 
     submitted = form.form_submit_button('Submit')
@@ -101,7 +100,6 @@ if route == 'Peripheral':
 if st.session_state.method == 'Loading':
     with st.container():
         st.write('### Vancomycin :blue[Loading] dose -', route)
-        st.divider()
         if renal == True or crea >100:
             st.write('#### :red[*1000 mg*]', route_load_dilution)
         else:
