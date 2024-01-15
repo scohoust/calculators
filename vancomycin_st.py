@@ -15,7 +15,7 @@ css = r'''
         [data-testid="stForm"] {border: 0px; padding: inherit;}
         hr { margin: 0px; } 
         [data-testid="stVerticalBlockBorderWrapper"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlockBorderWrapper"] {
-        background-color: #fcb900; padding: 5px; border: 1px; border-color: #000; border-style: solid; 
+        padding: 5px; border: 1px; border-color: #000; border-style: solid; 
         }
     </style>
 '''
@@ -68,6 +68,7 @@ if st.session_state.method == 'Maintainence':
 
 
 st.divider()
+st.markdown('''<div style="background-color: #fcb900;>''', allow_unsafe_html=True)
 
 route = st.session_state.route
 if route == 'Central':
