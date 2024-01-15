@@ -68,6 +68,10 @@ if not submitted:
     st.stop()
 
 #Error checking
+if not st.session_state.route:
+    st.error('No route selected)
+    st.stop
+
 if st.session_state.method == 'Loading':
     if crea < 20 or crea > 200:
         st.error('Check the creatinine - it is out of a normal range')
@@ -80,7 +84,6 @@ if st.session_state.method == 'Maintainence':
 
 
 st.divider()
-st.markdown('''<div class="test">tes</div>''', unsafe_allow_html=True)
 
 route = st.session_state.route
 if route == 'Central':
