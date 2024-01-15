@@ -53,8 +53,7 @@ if st.session_state.method == 'Maintainence':
   if st.session_state.route == 'Peripheral':
       infusion = form.select_slider('Current rate', 
                               options=rates['Peripheral'].unique())            
-      
-    submitted = form.form_submit_button('Submit')
+  submitted = form.form_submit_button('Submit')
 
 if not submitted:
   st.stop();
