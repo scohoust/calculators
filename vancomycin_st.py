@@ -30,7 +30,7 @@ st.markdown(hide_default_format, unsafe_allow_html=True)
 st.markdown(css, unsafe_allow_html=True)
 
 with st.sidebar:
-    st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
+    st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method", placeholder="Start here")
 
 st.selectbox('Route of administration', ('Central', 'Peripheral'), key="route")
 
