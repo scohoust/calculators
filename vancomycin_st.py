@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 
 data = {
-    'Central': ['1.1', '2.2', '4.2', '6.3', '8.3', '10.4', '12.5'],
-    'Peripheral': ['2.1', '4.2', '8.3', '12.5', '16.7', '20.8', '25.0']
+    'Central': ['1.1', '2.1', '4.2', '6.3', '8.3', '10.4', '13', '15'],
+    'Peripheral': ['2.1', '4.2', '8.3', '13', '17', '21', '25', '29']
 }
 
 rates = pd.DataFrame(data)
@@ -28,8 +28,10 @@ hide_default_format = """
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
 st.markdown(css, unsafe_allow_html=True)
-    
-st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
+
+with st.sidebar:
+    st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method")
+
 st.selectbox('Administer by', ('Central', 'Peripheral'), key="route")
 
 form = st.form(key="calc")
