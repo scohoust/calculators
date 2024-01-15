@@ -14,7 +14,7 @@ css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
         hr { margin: 0px; } 
-        [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"]  {
+        [data-testid="stVerticalBlock"] > [class^="st.emotion"] > [data-testid="stVerticalBlock"]  {
         padding: 5px; border: 1px; border-color: #000; border-style: solid; background-color: #fcb900;
         }
     </style>
