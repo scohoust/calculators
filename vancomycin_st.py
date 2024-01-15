@@ -138,8 +138,7 @@ if st.session_state.method == 'Maintainence':
                 st.info('#### Already on maximum rate - discuss with pharmacist')
              else:            
                 new = current[0] + 1
-                st.info(f'''#### Increase daily dose
-                #### New rate: :red[ {rates[route].iloc[new]} ml/hr]''')
+                st.info(f'#### Increase daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
 
         if level > 25 and level < 30:
             if current[0] == 0:
