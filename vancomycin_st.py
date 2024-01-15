@@ -8,7 +8,6 @@ data = {
 
 rates = pd.DataFrame(data)
 
-submitted = false
 
 st.title('Continuous Vancomycin calculator')
 
@@ -38,8 +37,9 @@ with st.sidebar:
 
 
 
-form = st.form(key="calc")
+
 if st.session_state.method == 'Loading':
+    form = st.form(key="calc")
     crea = form.number_input('Serum creatinine', value=50)
     renal = form.checkbox('On haemodialysis')
     weight = form.number_input('Acutal body weight', value=70)
@@ -47,17 +47,21 @@ if st.session_state.method == 'Loading':
     submitted = form.form_submit_button('Submit')
 
 if st.session_state.method == 'Maintainence':
-  level = form.number_input('Vanc level', value=15.0)
+    form = st.form(key="calc")
+      
+    level = form.number_input('Vanc level', value=15.0)
   
-  if st.session_state.route == 'Central':
-      infusion = form.select_slider('Current rate', 
+    if st.session_state.route == 'Central':
+          infusion = form.select_slider('Current rate', 
                               options=rates['Central'].unique())
-  if st.session_state.route == 'Peripheral':
-      infusion = form.select_slider('Current rate', 
-                              options=rates['Peripheral'].unique())            
-  submitted = form.form_submit_button('Submit')
+        
+    if st.session_state.route == 'Peripheral':
+          infusion = form.select_slider('Current rate', 
+                              options=rates['Peripheral'].unique())    
+        
+    submitted = form.form_submit_button('Submit')
 
-if not submitted:
+if st.session_state.calc == "":
   st.stop();
 
 #Error checking
