@@ -77,44 +77,45 @@ st.divider()
 if st.session_state.method == 'Loading':
     if crea < 20 or crea > 200:
         st.error('Check the creatinine - it is out of a normal range')
+        st.divider()
     if weight < 40 or weight > 110:
         st.error('Check the weight - it is out of a normal range')
+        st.divider()
 
 if st.session_state.method == 'Maintainence':
     if level < 7 or level > 35:
         st.error('Check the vancomycin level - it is out of a normal range')
-
-
+        st.divider()
 
 
 route = st.session_state.route
 if route == 'Central':
-    route_load_dilution = 'diluted in *100 ml* of 0.9% NaCl or 5% glucose'
+    route_load_dilution = ''
     route_renal_start = 'administered at :red[_4.2 ml/hr_] using a *500mg/50ml* concentration' 
     route_start_normal = 'administered at :red[_6.3 ml/hr_] using a *500mg/50ml* concentration' 
 if route == 'Peripheral':
-    route_load_dilution = 'diluted in *250 ml* of 0.9% NaCl or 5% glucose'
+    route_load_dilution = ''
     route_renal_start = 'administered at :red[_8.3 ml/hr_] using a *250mg/50ml* concentration' 
     route_start_normal = 'administered at :red[_12.5 ml/hr_] using a *250mg/50ml* concentration' 
 
 if st.session_state.method == 'Loading':
     with st.container():
-        st.write('### Vancomycin :blue[Loading] dose -', route)
+        st.write('### Vancomycin *Loading* dose -', route)
         if renal == True or crea >100:
-            st.write('#### :red[*1000 mg*]', route_load_dilution)
+            st.info('#### :red[*1000 mg*]', route_load_dilution)
         else:
             if weight >= 100:
-                st.write('#### :red[*2500 mg*]', route_load_dilution)
+                st.info('#### :red[*2500 mg*]', route_load_dilution)
             if weight >= 80 and weight < 99:
-                st.write('#### :red[*2000 mg*]', route_load_dilution)
+                st.info('#### :red[*2000 mg*]', route_load_dilution)
             if weight >= 60 and weight < 79:
-                st.write('#### :red[*1500 mg*]', route_load_dilution)
+                st.info('#### :red[*1500 mg*]', route_load_dilution)
             if weight >= 50 and weight < 59:
-                st.write('#### :red[*1000 mg*]', route_load_dilution)
+                st.info('#### :red[*1000 mg*]', route_load_dilution)
             if weight < 50:
-                st.write('#### :red[*750 mg*]', route_load_dilution)
+                st.info('#### :red[*750 mg*]', route_load_dilution)
         
-        st.write('Administered over **2** hours')
+        #st.write('Administered over **2** hours')
 
         st.write('### Immediately followed by an continuous infusion:')
         if renal == True or crea >100:
