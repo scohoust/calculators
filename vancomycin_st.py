@@ -40,9 +40,9 @@ with st.sidebar:
 
 if st.session_state.method == 'Loading':
     form = st.form(key="calc")
-    crea = form.number_input('Serum creatinine', value=50)
-    renal = form.checkbox('On haemodialysis')
-    weight = form.number_input('Acutal body weight', value=70)
+    crea = form.number_input('Serum creatinine', placeholder="umol/L", min_value=5)
+    renal = form.checkbox('On continuous haemodialysis')
+    weight = form.number_input('Acutal body weight', placeholder="kg")
 
     submitted = form.form_submit_button('Submit')
 
@@ -72,6 +72,8 @@ if not st.session_state.route:
     st.error('No route selected')
     st.stop()
 
+st.divider()
+
 if st.session_state.method == 'Loading':
     if crea < 20 or crea > 200:
         st.error('Check the creatinine - it is out of a normal range')
@@ -83,7 +85,7 @@ if st.session_state.method == 'Maintainence':
         st.error('Check the vancomycin level - it is out of a normal range')
 
 
-st.divider()
+
 
 route = st.session_state.route
 if route == 'Central':
