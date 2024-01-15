@@ -8,6 +8,8 @@ data = {
 
 rates = pd.DataFrame(data)
 
+submitted = false
+
 st.title('Continuous Vancomycin calculator')
 
 css = r'''
