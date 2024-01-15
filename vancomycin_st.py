@@ -134,7 +134,7 @@ if st.session_state.method == 'Maintainence':
             st.info('#### No change - continue current rate')
 
         if level < 15 and level >= 10:
-             if current[0] == 6:
+             if current[0] == 7:
                 st.info('#### Already on maximum rate - discuss with pharmacist')
              else:            
                 new = current[0] + 1
