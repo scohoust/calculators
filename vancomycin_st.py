@@ -42,6 +42,8 @@ if st.session_state.method == 'Loading':
     renal = form.checkbox('On haemodialysis')
     weight = form.number_input('Acutal body weight', value=70)
 
+    submitted = form.form_submit_button('Submit')
+
 if st.session_state.method == 'Maintainence':
   level = form.number_input('Vanc level', value=15.0)
   
@@ -52,7 +54,7 @@ if st.session_state.method == 'Maintainence':
       infusion = form.select_slider('Current rate', 
                               options=rates['Peripheral'].unique())            
       
-submitted = form.form_submit_button('Submit')
+    submitted = form.form_submit_button('Submit')
 
 if not submitted:
   st.stop();
