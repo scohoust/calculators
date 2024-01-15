@@ -30,9 +30,11 @@ st.markdown(hide_default_format, unsafe_allow_html=True)
 st.markdown(css, unsafe_allow_html=True)
 
 with st.sidebar:
+    st.header("Dose calculator")
     st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method", index=None, placeholder="Start here")
+    st.selectbox('Route of administration', ('Central', 'Peripheral'), key="route", index=None, placeholder="Route")
 
-st.selectbox('Route of administration', ('Central', 'Peripheral'), key="route")
+
 
 form = st.form(key="calc")
 if st.session_state.method == 'Loading':
