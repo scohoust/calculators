@@ -49,7 +49,7 @@ if st.session_state.method == 'Loading':
 if st.session_state.method == 'Maintainence':
     form = st.form(key="calc")
       
-    level = form.number_input('Vanc level', value=None, placeholder="mg/L", step=0.1)
+    level = form.number_input('Vanc level', value=None, placeholder="mg/L", step=1e-1)
   
     if st.session_state.route == 'Central':
           infusion = form.select_slider('Current rate', 
