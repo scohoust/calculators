@@ -62,7 +62,8 @@ if st.session_state.method == 'Maintainence':
     submitted = form.form_submit_button('Submit')
 
 if not st.session_state.method:
-  st.stop();
+    if not submitted:
+      st.stop();
 
 #Error checking
 if st.session_state.method == 'Loading':
