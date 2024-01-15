@@ -40,9 +40,9 @@ with st.sidebar:
 
 if st.session_state.method == 'Loading':
     form = st.form(key="calc")
-    crea = form.number_input('Serum creatinine', placeholder="umol/L", min_value=5, index=None)
+    crea = form.number_input('Serum creatinine', placeholder="umol/L", min_value=5, value=None)
     renal = form.checkbox('On continuous haemodialysis')
-    weight = form.number_input('Acutal body weight', placeholder="kg", index=None)
+    weight = form.number_input('Acutal body weight', placeholder="kg", value=None)
 
     submitted = form.form_submit_button('Submit')
 
