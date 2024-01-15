@@ -117,7 +117,7 @@ if st.session_state.method == 'Loading':
         
         #st.write('Administered over **2** hours')
 
-        st.write('### Immediately followed by an continuous infusion:')
+        st.write('#### Immediately followed by an continuous infusion:')
         if renal == True or crea >100:
             st.write('#### *1 g* over 24 hours', route_renal_start)
         else:
