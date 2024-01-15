@@ -70,7 +70,7 @@ if not submitted:
 #Error checking
 if not st.session_state.route:
     st.error('No route selected')
-    st.stop
+    st.stop()
 
 if st.session_state.method == 'Loading':
     if crea < 20 or crea > 200:
