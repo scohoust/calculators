@@ -14,8 +14,8 @@ css = r'''
     <style>
         [data-testid="stForm"] {border: 0px; padding: inherit;}
         hr { margin: 0px; } 
-        [data-testid="stVerticalBlockBorderWrapper"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlockBorderWrapper"] {
-        padding: 5px; border: 1px; border-color: #000; border-style: solid; 
+        [data-testid="stVerticalBlock"]  {
+        padding: 5px; border: 1px; border-color: #000; border-style: solid; background-color: #fcb900;
         }
     </style>
 '''
@@ -68,7 +68,7 @@ if st.session_state.method == 'Maintainence':
 
 
 st.divider()
-st.markdown('''<div style="background-color: #fcb900;">''', unsafe_allow_html=True)
+st.markdown('''<div style="">''', unsafe_allow_html=True)
 
 route = st.session_state.route
 if route == 'Central':
