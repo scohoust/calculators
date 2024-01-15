@@ -102,18 +102,18 @@ if st.session_state.method == 'Loading':
     with st.container():
         st.write('### Vancomycin *Loading* dose -', route)
         if renal == True or crea >100:
-            st.info('#### :red[*1000 mg*]', route_load_dilution)
+            st.info('#### :red[*1000 mg*]')
         else:
             if weight >= 100:
-                st.info('#### :red[*2500 mg*]', route_load_dilution)
+                st.info('#### :red[*2500 mg*]')
             if weight >= 80 and weight < 99:
-                st.info('#### :red[*2000 mg*]', route_load_dilution)
+                st.info('#### :red[*2000 mg*]')
             if weight >= 60 and weight < 79:
-                st.info('#### :red[*1500 mg*]', route_load_dilution)
+                st.info('#### :red[*1500 mg*]')
             if weight >= 50 and weight < 59:
-                st.info('#### :red[*1000 mg*]', route_load_dilution)
+                st.info('#### :red[*1000 mg*]')
             if weight < 50:
-                st.info('#### :red[*750 mg*]', route_load_dilution)
+                st.info('#### :red[*750 mg*]')
         
         #st.write('Administered over **2** hours')
 
