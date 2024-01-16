@@ -80,7 +80,7 @@ if st.session_state.method == 'Loading':
         st.error('No creatinine entered')
         st.stop()
 
-    if not st.session_state.weight:
+    if weight == "":
         st.divider()
         st.error('No weight entered')
         st.stop()
