@@ -36,6 +36,8 @@ with st.sidebar:
     st.selectbox('Route of administration', ('Central', 'Peripheral'), key="route", index=None, placeholder="Route")
 
     if st.button("Reset values"):
+        st.session_state.method = ""
+        st.session_state.route = ""
         st.rerun()
 
 
