@@ -152,7 +152,7 @@ if st.session_state.method == 'Maintainence':
                 
         if level < 10:
                 new = current[0] + 2
-                st.info('#### Ensure infusion has not started in the last **6 hours** \n #### Administer new loading dose\n #### Increase daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
+                st.info(f'#### Ensure infusion has not started in the last **6 hours** \n #### Administer new loading dose AND increase daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
         
         
         st.write('Ensure daily vancomycin level')
