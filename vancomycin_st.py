@@ -75,7 +75,7 @@ if not st.session_state.route:
 
 
 if st.session_state.method == 'Loading':
-    if not st.session_state.crea:
+    if crea == ""
         st.divider()
         st.error('No creatinine entered')
         st.stop()
@@ -116,7 +116,7 @@ if route == 'Peripheral':
 if st.session_state.method == 'Loading':
     with st.container():
         st.write('### Vancomycin *Loading* dose -', route)
-        if renal == True or crea >100:
+        if renal == True or crea > 100:
             st.info('#### :red[*1000 mg*]')
         else:
             if weight >= 100:
