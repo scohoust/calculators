@@ -75,7 +75,7 @@ if not st.session_state.route:
 
 
 if st.session_state.method == 'Loading':
-    if crea == ""
+    if crea == "":
         st.divider()
         st.error('No creatinine entered')
         st.stop()
