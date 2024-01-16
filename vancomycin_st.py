@@ -93,7 +93,7 @@ if st.session_state.method == 'Loading':
         st.divider()
 
 if st.session_state.method == 'Maintainence':
-    if not st.session_state.level:
+    if level == None:
         st.divider()
         st.error('No vancomycin level entered')
         st.stop()
