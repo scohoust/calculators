@@ -72,6 +72,14 @@ if not st.session_state.route:
     st.error('No route selected')
     st.stop()
 
+if not st.session_state.crea:
+    st.error('No creatinine entered')
+    st.stop()
+
+if not st.session_state.weight:
+    st.error('No weight entered')
+    st.stop()
+
 st.divider()
 
 if st.session_state.method == 'Loading':
