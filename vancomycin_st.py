@@ -69,14 +69,17 @@ if not submitted:
 
 #Error checking
 if not st.session_state.route:
+    st.divider()
     st.error('No route selected')
     st.stop()
 
 if not crea:
+    st.divider()
     st.error('No creatinine entered')
     st.stop()
 
 if not weight:
+    st.divider()
     st.error('No weight entered')
     st.stop()
 
