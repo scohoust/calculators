@@ -161,14 +161,13 @@ if st.session_state.method == 'Maintainence':
                 st.info(f'#### Decrease daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
                 
         if level >= 30:
-                st.info('#### Stop infusion for at least **6 hours**\n #### Discuss new rate with pharmacist')
+                st.info('#### Stop infusion for at least **6 hours**\n #### Consider repeat sample \n #### Discuss new rate with pharmacist')
                 
         if level < 10:
                 new = current[0] + 2
                 st.info(f'#### Ensure infusion has not started in the last **6 hours** \n #### Administer :red[*1000 mg*] bolus AND increase daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
         
-        
-        st.write('Ensure daily vancomycin level')
+    
 
         
                 
