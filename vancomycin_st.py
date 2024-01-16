@@ -73,19 +73,18 @@ if not st.session_state.route:
     st.error('No route selected')
     st.stop()
 
-if not crea:
-    st.divider()
-    st.error('No creatinine entered')
-    st.stop()
-
-if not weight:
-    st.divider()
-    st.error('No weight entered')
-    st.stop()
-
-st.divider()
 
 if st.session_state.method == 'Loading':
+    if not st.session_state.crea:
+        st.divider()
+        st.error('No creatinine entered')
+        st.stop()
+
+    if not st.session_state.weight:
+        st.divider()
+        st.error('No weight entered')
+        st.stop()
+   
     if crea < 20 or crea > 200:
         st.error('Check the creatinine - it is out of a normal range')
         st.divider()
@@ -94,7 +93,7 @@ if st.session_state.method == 'Loading':
         st.divider()
 
 if st.session_state.method == 'Maintainence':
-    if not level:
+    if not st.session_state.level:
         st.divider()
         st.error('No vancomycin level entered')
         st.stop()
