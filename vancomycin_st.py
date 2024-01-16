@@ -35,7 +35,8 @@ with st.sidebar:
     st.selectbox('Calculate which dose', ('Loading', 'Maintainence'), key="method", index=None, placeholder="Start here")
     st.selectbox('Route of administration', ('Central', 'Peripheral'), key="route", index=None, placeholder="Route")
 
-
+    if st.button("Reset values"):
+        st.experimental_rerun()
 
 
 if st.session_state.method == 'Loading':
