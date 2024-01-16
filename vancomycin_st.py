@@ -119,9 +119,9 @@ if st.session_state.method == 'Loading':
 
         st.write('#### Immediately followed by an continuous infusion:')
         if renal == True or crea >100:
-            st.info(f'#### *1 g* over 24 hours {route_renal_start}')
+            st.info(f'#### *1000 mg* over 24 hours {route_renal_start}')
         else:
-            st.info(f'#### *1.5 g* over 24 hours {route_start_normal}')
+            st.info(f'#### *1500 mg* over 24 hours {route_start_normal}')
     
 if st.session_state.method == 'Maintainence':
     with st.container():
@@ -142,19 +142,16 @@ if st.session_state.method == 'Maintainence':
 
         if level > 25 and level < 30:
             if current[0] == 0:
-                st.write('#### Already on minimum rate - discuss with pharmacist')
+                st.info('#### Already on minimum rate - discuss with pharmacist')
             else:    
                 new = current[0] - 1
-                st.write('#### Decrease daily dose')
-                st.write('#### New rate: :red[', rates[route].iloc[new], 'ml/hr]')
+                st.info(f'#### Decrease daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
                 
         if level >= 30:
-                st.write('#### Stop infusion for at least **6 hours**')
-                st.write('#### Discuss new rate with pharmacist')
-            
+                st.info('#### Stop infusion for at least **6 hours**\n #### Discuss new rate with pharmacist')
+                
         if level < 10:
-                st.write('#### Ensure infusion has not started in the last **6 hours**')
-                st.write('#### Administer new loading dose')
+                st.info('#### Ensure infusion has not started in the last **6 hours** \n #### Administer new loading dose')
         
         
         st.write('Ensure daily vancomycin level')
