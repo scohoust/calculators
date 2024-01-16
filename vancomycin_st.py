@@ -52,11 +52,11 @@ if st.session_state.method == 'Maintainence':
     level = form.number_input('Vanc level', value=None, placeholder="mg/L", step=1e-1)
   
     if st.session_state.route == 'Central':
-          infusion = form.select_slider('Current rate', 
+          infusion = form.select_slider('Current rate (ml/hr)', 
                               options=rates['Central'].unique())
         
     if st.session_state.route == 'Peripheral':
-          infusion = form.select_slider('Current rate', 
+          infusion = form.select_slider('Current rate (ml/hr)', 
                               options=rates['Peripheral'].unique())    
         
     submitted = form.form_submit_button('Submit')
