@@ -127,6 +127,12 @@ if route == 'Peripheral':
 if st.session_state.method == 'Loading':
     
     crcl = ((140 - age) * weight) / crea
+    if sex == 'Male':
+        crcl = crcl * 1.23
+    else:
+        crcl = crcl * 1.04
+
+    
     
     with st.container():
         st.write('### Vancomycin *Loading* dose -', route)
