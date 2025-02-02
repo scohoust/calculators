@@ -125,6 +125,9 @@ if route == 'Peripheral':
     route_start_normal = 'administered at :red[_12.5 ml/hr_] using a *250mg/50ml* concentration' 
 
 if st.session_state.method == 'Loading':
+    
+    crcl = ((140 - age) * weight) / crea
+    
     with st.container():
         st.write('### Vancomycin *Loading* dose -', route)
         if weight >= 140:
@@ -152,7 +155,8 @@ if st.session_state.method == 'Loading':
         #st.write('Administered over **2** hours')
 
         st.write('#### Immediately followed by an continuous infusion:')
-    
+        st.info(f'Crea Cl: {crcl}')
+        
 if st.session_state.method == 'Maintainence':
     with st.container():
         st.write('### Vancomycin *Maintainence* infusion -', route)
