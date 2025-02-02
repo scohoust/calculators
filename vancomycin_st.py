@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 
 data = {
-    'Central': ['1.1', '2.1', '4.2', '6.3', '8.3', '10.4', '13', '15'],
-    'Peripheral': ['2.1', '4.2', '8.3', '13', '17', '21', '25', '29']
+    'Central': ['1.1', '2.1', '3.1', '4.2', '6.3', '8.3', '10.4', '13', '15'],
+    'Peripheral': ['2.1', '4.2', '6.2', '8.3', '13', '17', '21', '25', '29']
 }
 
 rates = pd.DataFrame(data)
@@ -38,9 +38,12 @@ with st.sidebar:
 
 if st.session_state.method == 'Loading':
     form = st.form(key="calc")
+    age = form.number_input('Age', placeholder="", min_value=16, value=None)
+    sex = form.selectbox('Sex', ('Male', 'Female'))
     crea = form.number_input('Serum creatinine', placeholder="umol/L", min_value=5, value=None)
-    renal = form.checkbox('On continuous haemodialysis')
+    renal = form.checkbox('On continuous renal replacement (CVVHD/CVVHF)')
     weight = form.number_input('Acutal body weight', placeholder="kg", value=None)
+    
 
     submitted = form.form_submit_button('Submit')
 
@@ -82,10 +85,20 @@ if st.session_state.method == 'Loading':
         st.divider()
         st.error('No weight entered')
         st.stop()
-   
+            
+    if age == None:
+        st.divider()
+        st.error('No age entered')
+        st.stop()
+        
+    if age < 18 or age > 80:
+        st.error('Check the age - it is out of a normal range')
+        st.divider()
+               
     if crea < 20 or crea > 200:
         st.error('Check the creatinine - it is out of a normal range')
         st.divider()
+        
     if weight < 40 or weight > 110:
         st.error('Check the weight - it is out of a normal range')
         st.divider()
@@ -114,27 +127,31 @@ if route == 'Peripheral':
 if st.session_state.method == 'Loading':
     with st.container():
         st.write('### Vancomycin *Loading* dose -', route)
-        if renal == True or crea > 100:
+        if weight >= 140:
+            st.info('#### :red[*3000 mg*]')
+            st.write('#### And please inform pharmacy team')
+        if weight >= 110 and weight < 139:
+            st.info('#### :red[*3000 mg*]')
+        if weight >= 100 and weight < 110:
+            st.info('#### :red[*2750 mg*]')
+        if weight >= 90 and weight < 99:
+            st.info('#### :red[*2500 mg*]')
+        if weight >= 80 and weight < 89:
+            st.info('#### :red[*2250 mg*]')
+        if weight >= 65 and weight < 79:
+            st.info('#### :red[*2000 mg*]')
+        if weight >= 60 and weight < 64:
+            st.info('#### :red[*1750 mg*]')
+        if weight >= 55 and weight < 59:
+            st.info('#### :red[*1500 mg*]')
+        if weight >= 50 and weight < 54:
+            st.info('#### :red[*1250 mg*]')    
+        if weight < 50:
             st.info('#### :red[*1000 mg*]')
-        else:
-            if weight >= 100:
-                st.info('#### :red[*2500 mg*]')
-            if weight >= 80 and weight < 99:
-                st.info('#### :red[*2000 mg*]')
-            if weight >= 60 and weight < 79:
-                st.info('#### :red[*1500 mg*]')
-            if weight >= 50 and weight < 59:
-                st.info('#### :red[*1000 mg*]')
-            if weight < 50:
-                st.info('#### :red[*750 mg*]')
         
         #st.write('Administered over **2** hours')
 
         st.write('#### Immediately followed by an continuous infusion:')
-        if renal == True or crea >100:
-            st.info(f'#### *1000 mg* over 24 hours {route_renal_start}')
-        else:
-            st.info(f'#### *1500 mg* over 24 hours {route_start_normal}')
     
 if st.session_state.method == 'Maintainence':
     with st.container():
@@ -169,5 +186,3 @@ if st.session_state.method == 'Maintainence':
         
     
 
-        
-                
