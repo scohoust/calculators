@@ -200,7 +200,7 @@ if st.session_state.method == 'Loading':
         if route == 'Central':
             st.info(f"#### *{vanco_params['dose']} mg* over 24 hours \n #### :red[{vanco_params['central_rate']}] mL/hr using a 500mg/50mL concentration")
         elif route == 'Peripheral':
-            st.info(f"#### *{vanco_params['dose']} mg* over 24 hours \n #### :red[{vanco_params['peripheral_rate']}] mL/hr using a 500mg/50mL concentration")
+            st.info(f"#### *{vanco_params['dose']} mg* over 24 hours \n #### :red[{vanco_params['peripheral_rate']}] mL/hr using a 250mg/50mL concentration")
             
     
 if st.session_state.method == 'Maintainence':
