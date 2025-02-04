@@ -31,11 +31,13 @@ def get_vanco_parameters(crcl, is_cv=False):
         return {"dose": 250, "central_rate": 1.1, "peripheral_rate": 2.1}
 
 def calculate_loading_dose(age, sex, crea, weight, renal):
+    # Calculate CrCl using the Cockcroft–Gault formula:
     crcl = ((140 - age) * weight) / crea
     crcl *= 1.23 if sex == 'Male' else 1.04
     return get_vanco_parameters(crcl, is_cv=renal)
 
 def adjust_maintenance_rate(rates, route, current_rate, level):
+    # Find the current index in the DataFrame's column for the route.
     current_index = rates.index[rates[route] == current_rate].tolist()[0]
     if 15 <= level <= 25:
         return current_rate, 'No change'
@@ -53,6 +55,29 @@ def validate_input(value, name, min_val, max_val):
     if not (min_val <= value <= max_val):
         st.error(f'Check the {name} - it is out of a normal range ({min_val} to {max_val})')
         st.stop()
+
+# --------------------------
+# Define Helper Functions for Forms
+# --------------------------
+def loading_form():
+    form = st.form(key="loading_form")
+    age = form.number_input('Age', min_value=16, value=None, help="Enter the patient's age")
+    sex = form.selectbox('Sex', ('Male', 'Female'))
+    crea = form.number_input('Serum creatinine (umol/L)', min_value=5, value=None, help="Enter the serum creatinine in umol/L")
+    renal = form.checkbox('On continuous renal replacement (CVVHD/CVVHF)')
+    weight = form.number_input('Actual body weight (kg)', min_value=1, value=None, help="Enter the actual body weight in kg")
+    submitted = form.form_submit_button('Submit')
+    return submitted, age, sex, crea, renal, weight
+
+def maintenance_form(rates, route):
+    form = st.form(key="maintenance_form")
+    level = form.number_input('Vancomycin level (mg/L)', value=None, placeholder="mg/L", step=1e-1)
+    if route == 'Central':
+        infusion = form.select_slider('Current rate (ml/hr)', options=rates['Central'].unique())
+    else:
+        infusion = form.select_slider('Current rate (ml/hr)', options=rates['Peripheral'].unique())
+    submitted = form.form_submit_button('Submit')
+    return submitted, level, infusion
 
 # --------------------------
 # Styling and Sidebar
@@ -96,9 +121,30 @@ if method == 'Loading':
     vanco_params = calculate_loading_dose(age, sex, crea, weight, renal)
     with st.container():
         st.write('### Vancomycin *Loading* Dose -', route)
-        # Display weight-based loading dose recommendations
-        # ... (your existing weight-based logic here)
-        st.write('#### Followed by a continuous infusion:')
+        # Here you can include your weight-based loading dose recommendations:
+        if weight >= 140:
+            st.info('#### :red[*3000 mg*]')
+            st.write('#### And please inform pharmacy team')
+        elif weight >= 110 and weight < 139:
+            st.info('#### :red[*3000 mg*]')
+        elif weight >= 100 and weight < 110:
+            st.info('#### :red[*2750 mg*]')
+        elif weight >= 90 and weight < 99:
+            st.info('#### :red[*2500 mg*]')
+        elif weight >= 80 and weight < 89:
+            st.info('#### :red[*2250 mg*]')
+        elif weight >= 65 and weight < 79:
+            st.info('#### :red[*2000 mg*]')
+        elif weight >= 60 and weight < 64:
+            st.info('#### :red[*1750 mg*]')
+        elif weight >= 55 and weight < 59:
+            st.info('#### :red[*1500 mg*]')
+        elif weight >= 50 and weight < 54:
+            st.info('#### :red[*1250 mg*]')
+        else:
+            st.info('#### :red[*1000 mg*]')
+            
+        st.write('#### Immediately followed by a continuous infusion:')
         if route == 'Central':
             st.info(f"#### *{vanco_params['dose']} mg* over 24 hours \n#### :red[{vanco_params['central_rate']} mL/hr] using a 500mg/50mL concentration")
         else:
