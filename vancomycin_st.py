@@ -200,7 +200,8 @@ if st.session_state.method == 'Loading':
           
         route = st.session_state.route
         if route == 'Central':
-            st.info(f"### *{vanco_params['dose']}* over 24 hours, :red[{vanco_params['central_rate']}] mL/hr using a 500mg/50mL concentration")
+            st.info(f"### *{vanco_params['dose']} mg* over 24 hours")
+            st.info(f"### :red[{vanco_params['central_rate']}] mL/hr using a 500mg/50mL concentration")
         elif route == 'Peripheral':
             st.info(f"Recommended infusion rate: {vanco_params['peripheral_rate']} mL/hr using a 250mg/50mL concentration")
             
