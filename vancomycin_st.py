@@ -8,6 +8,38 @@ data = {
 
 rates = pd.DataFrame(data)
 
+def get_vanco_parameters(crcl, is_cv=False):
+    """
+    Returns a dictionary with the appropriate vancomycin dosing parameters
+    based on the patient's creatinine clearance (crcl) and whether they are on
+    continuous renal replacement therapy (is_cv).
+    
+    The returned dictionary contains:
+      - 'dose': The approximate 24-hour vancomycin dose in mg.
+      - 'central_rate': The infusion pump rate (mL/hr) for Central administration.
+      - 'peripheral_rate': The infusion pump rate (mL/hr) for Peripheral administration.
+    """
+    if is_cv:  # Patient is on CVVHD/CVVHDF
+        return {"dose": 1000, "central_rate": 4.2, "peripheral_rate": 8.3}
+    
+    # Use the CrCl ranges from your table
+    if crcl > 110:
+        return {"dose": 3000, "central_rate": 13, "peripheral_rate": 25}
+    elif 90 <= crcl <= 100:
+        return {"dose": 2500, "central_rate": 10.4, "peripheral_rate": 21}
+    elif 75 <= crcl <= 89:
+        return {"dose": 2000, "central_rate": 8.3, "peripheral_rate": 17}
+    elif 50 <= crcl <= 74:
+        return {"dose": 1500, "central_rate": 6.3, "peripheral_rate": 13}
+    elif 40 <= crcl <= 49:
+        return {"dose": 1000, "central_rate": 4.2, "peripheral_rate": 8.3}
+    elif 30 <= crcl <= 39:
+        return {"dose": 750, "central_rate": 3.1, "peripheral_rate": 6.2}
+    elif 20 <= crcl <= 29:
+        return {"dose": 500, "central_rate": 2.1, "peripheral_rate": 4.2}
+    else:  # crcl < 20
+        return {"dose": 250, "central_rate": 1.1, "peripheral_rate": 2.1}
+
 
 st.title('Continuous Vancomycin calculator')
 
@@ -132,8 +164,9 @@ if st.session_state.method == 'Loading':
     else:
         crcl = crcl * 1.04
 
-    
-    
+    vanco_params = get_vanco_parameters(crcl, is_cv=renal)
+
+   
     with st.container():
         st.write('### Vancomycin *Loading* dose -', route)
         if weight >= 140:
@@ -162,7 +195,16 @@ if st.session_state.method == 'Loading':
 
         st.write('#### Immediately followed by an continuous infusion:')
         st.info(f'Crea Cl: {crcl}')
+      
+        route = st.session_state.route
+        if route == 'Central':
+            st.info(f"Recommended infusion rate: {vanco_params['central_rate']} mL/hr using a 500mg/50mL concentration")
+        elif route == 'Peripheral':
+            st.info(f"Recommended infusion rate: {vanco_params['peripheral_rate']} mL/hr using a 250mg/50mL concentration")
+
+        st.write(f"Approximate 24-hour vancomycin dose: {vanco_params['dose']} mg")
         
+    
 if st.session_state.method == 'Maintainence':
     with st.container():
         st.write('### Vancomycin *Maintainence* infusion -', route)
