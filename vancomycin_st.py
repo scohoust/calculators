@@ -54,7 +54,6 @@ def validate_input(value, name, min_val, max_val):
         st.stop()
     if not (min_val <= value <= max_val):
         st.error(f'Check the {name} - it is out of a normal range ({min_val} to {max_val})')
-        st.stop()
 
 # --------------------------
 # Define Helper Functions for Forms
