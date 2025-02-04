@@ -195,14 +195,12 @@ if st.session_state.method == 'Loading':
 
         
         st.write('#### Immediately followed by an continuous infusion:')
-        st.info(f'Crea Cl: {crcl}')
-        st.info(f"Approximate 24-hour vancomycin dose: {vanco_params['dose']} mg")
           
         route = st.session_state.route
         if route == 'Central':
             st.info(f"#### *{vanco_params['dose']} mg* over 24 hours \n #### :red[{vanco_params['central_rate']}] mL/hr using a 500mg/50mL concentration")
         elif route == 'Peripheral':
-            st.info(f"Recommended infusion rate: {vanco_params['peripheral_rate']} mL/hr using a 250mg/50mL concentration")
+            st.info(f"#### *{vanco_params['dose']} mg* over 24 hours \n #### :red[{vanco_params['peripheral_rate']}] mL/hr using a 500mg/50mL concentration")
             
     
 if st.session_state.method == 'Maintainence':
@@ -216,7 +214,7 @@ if st.session_state.method == 'Maintainence':
             st.info('#### No change - continue current rate')
 
         if level < 15 and level >= 10:
-             if current[0] == 7:
+             if current[0] == 8:
                 st.info('#### Already on maximum rate - discuss with pharmacist')
              else:            
                 new = current[0] + 1
@@ -234,7 +232,7 @@ if st.session_state.method == 'Maintainence':
                 
         if level < 10:
                 new = current[0] + 2
-                st.info(f'#### Ensure infusion has not started in the last **6 hours** \n #### Administer :red[*1000 mg*] bolus AND increase daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
+                st.info(f'#### Ensure infusion has not started in the last **6 hours** \n #### Reload using *acutal* body weight AND increase daily dose\n #### New rate: :red[ {rates[route].iloc[new]} ml/hr]')
         
     
 
