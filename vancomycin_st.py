@@ -193,17 +193,17 @@ if st.session_state.method == 'Loading':
         
         #st.write('Administered over **2** hours')
 
+        
         st.write('#### Immediately followed by an continuous infusion:')
         st.info(f'Crea Cl: {crcl}')
-      
+        st.info(f"Approximate 24-hour vancomycin dose: {vanco_params['dose']} mg")
+          
         route = st.session_state.route
         if route == 'Central':
             st.info(f"Recommended infusion rate: {vanco_params['central_rate']} mL/hr using a 500mg/50mL concentration")
         elif route == 'Peripheral':
             st.info(f"Recommended infusion rate: {vanco_params['peripheral_rate']} mL/hr using a 250mg/50mL concentration")
-
-        st.write(f"Approximate 24-hour vancomycin dose: {vanco_params['dose']} mg")
-        
+            
     
 if st.session_state.method == 'Maintainence':
     with st.container():
